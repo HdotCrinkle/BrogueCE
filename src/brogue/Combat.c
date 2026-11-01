@@ -60,7 +60,7 @@
 fixpt strengthModifier(const item *theItem) {
     int difference = (rogue.strength - player.weaknessAmount) - theItem->strengthRequired;
     if (difference > 0) {
-        return difference * FP_FACTOR / 4; // 0.25x
+        return difference * FP_FACTOR / 2; // 0.5x
     } else {
         return difference * FP_FACTOR * 5/2; // 2.5x
     }
