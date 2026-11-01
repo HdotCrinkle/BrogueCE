@@ -7025,14 +7025,14 @@ boolean readScroll(item *theItem) {
             theItem->timesEnchanted += enchantMagnitude();
             switch (theItem->category) {
                 case WEAPON:
-                    theItem->strengthRequired = max(0, theItem->strengthRequired - enchantMagnitude());
+                    // theItem->strengthRequired = max(0, theItem->strengthRequired - enchantMagnitude());
                     theItem->enchant1 += enchantMagnitude();
                     if (theItem->quiverNumber) {
                         theItem->quiverNumber = rand_range(1, 60000);
                     }
                     break;
                 case ARMOR:
-                    theItem->strengthRequired = max(0, theItem->strengthRequired - enchantMagnitude());
+                    // theItem->strengthRequired = max(0, theItem->strengthRequired - enchantMagnitude());
                     theItem->enchant1 += enchantMagnitude();
                     break;
                 case RING:
