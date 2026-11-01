@@ -942,6 +942,7 @@ enum ringKind {
     RING_AWARENESS,
     RING_WISDOM,
     RING_REAPING,
+    RING_STRENGTH,
     NUMBER_RING_KINDS
 };
 
@@ -2528,6 +2529,7 @@ typedef struct playerCharacter {
     short transference;
     short wisdomBonus;
     short reaping;
+    short strengthBonus;
 
     // feats:
     boolean *featRecord;
@@ -3228,6 +3230,7 @@ extern "C" {
     void monsterName(char *buf, const creature *monst, boolean includeArticle);
     boolean monsterIsInClass(const creature *monst, const short monsterClass);
     boolean chooseTarget(pos *returnLoc, short maxDistance, enum autoTargetMode targetingMode, const item *theItem);
+    short currentStrength(void);
     fixpt strengthModifier(const item *theItem);
     fixpt netEnchant(const item *theItem);
     short hitProbability(const creature *attacker, const creature *defender);

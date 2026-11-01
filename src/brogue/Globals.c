@@ -1636,6 +1636,7 @@ itemTable ringTable[NUMBER_RING_KINDS] = {
     {"awareness",       itemGems[5], "",    1,  700,    0, 0, {1,3,1}, false, false, 1, false, "This ring of effortless vigilance will enable you to notice traps, secret doors and hidden levers more often and from a greater distance. Cursed rings of awareness will dull your senses, making it harder to notice secrets without actively searching for them."},
     {"wisdom",          itemGems[6], "",    1,  700,    0, 0, {1,3,1}, false, false, 1, false, "This ring of arcane power will cause your staffs to recharge at an accelerated rate. Cursed rings of wisdom will cause your staffs to recharge more slowly."},
     {"reaping",         itemGems[7], "",    1,  700,    0, 0, {1,3,1}, false, false, 1, false, "This ring of blood magic will recharge your staffs and charms every time you hit an enemy. Cursed rings of reaping will drain your staffs and charms with every hit."},
+    {"strength",        itemGems[8], "",    1,  700,    0, 0, {1,3,1}, false, false, 1, false, "This ring of fantastic power will increase your strength. Cursed rings of strength will lower your strength."},
 };
 
 const monsterBehavior monsterBehaviorCatalog[32] = {

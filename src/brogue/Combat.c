@@ -57,8 +57,13 @@
  * strength penalty/benefit) increases
  */
 
+short currentStrength() {
+    short strength = rogue.strength + rogue.strengthBonus - player.weaknessAmount;
+    return max(0, strength);
+}
+
 fixpt strengthModifier(const item *theItem) {
-    int difference = (rogue.strength - player.weaknessAmount) - theItem->strengthRequired;
+    int difference = currentStrength() - theItem->strengthRequired;
     if (difference > 0) {
         return difference * FP_FACTOR / 2; // 0.5x
     } else {

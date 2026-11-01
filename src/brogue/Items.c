@@ -1819,7 +1819,7 @@ static fixpt enchantIncrement(const item *theItem) {
     if (theItem->category & (WEAPON | ARMOR)) {
         if (theItem->strengthRequired == 0) {
             return FP_FACTOR;
-        } else if (rogue.strength - player.weaknessAmount < theItem->strengthRequired) {
+        } else if (currentStrength() < theItem->strengthRequired) {
             return FP_FACTOR * 35 / 10;
         } else {
             return FP_FACTOR * 125 / 100;
@@ -2220,7 +2220,7 @@ void itemDetails(char *buf, const item *theItem) {
                         } else {
                             if ((theItem->flags & ITEM_IDENTIFIED) || rogue.playbackOmniscience) {
                                 if (runicWeaponChance(theItem, false, 0) < 2
-                                    && rogue.strength - player.weaknessAmount < theItem->strengthRequired) {
+                                    && currentStrength() < theItem->strengthRequired) {
 
                                     strcpy(buf2, "Its runic effect will almost never activate because of your inadequate strength, but sometimes, when");
                                 } else {
@@ -2631,6 +2631,14 @@ void itemDetails(char *buf, const item *theItem) {
                         case RING_REAPING:
                             sprintf(buf2, "\n\nEach blow that you land with a weapon will %s your staffs and charms by 0-%i turns per point of damage dealt. (If the ring is enchanted, this will %s to 0-%i turns per point of damage.)",
                                     (theItem->enchant1 >= 0 ? "recharge" : "drain"),
+                                    abs(theItem->enchant1),
+                                    (theItem->enchant1 >= 0 ? "increase" : "decrease"),
+                                    abs(theItem->enchant1 + enchantMagnitude()));
+                            strcat(buf, buf2);
+                            break;
+                        case RING_STRENGTH:
+                            sprintf(buf2, "\n\nThis ring will %s your strength by %i. (If the ring is enchanted, this will %s to %i.)",
+                                    (theItem->enchant1 >= 0 ? "raise" : "lower"),
                                     abs(theItem->enchant1),
                                     (theItem->enchant1 >= 0 ? "increase" : "decrease"),
                                     abs(theItem->enchant1 + enchantMagnitude()));
@@ -3210,16 +3218,16 @@ void strengthCheck(const item *theItem, boolean noisy) {
 
     updateEncumbrance();
     if (noisy && theItem) {
-        if (theItem->category & WEAPON && theItem->strengthRequired > rogue.strength - player.weaknessAmount) {
-            strengthDeficiency = theItem->strengthRequired - max(0, rogue.strength - player.weaknessAmount);
+        if (theItem->category & WEAPON && theItem->strengthRequired > currentStrength()) {
+            strengthDeficiency = theItem->strengthRequired - max(0, currentStrength());
             strcpy(buf1, "");
             itemName(theItem, buf1, false, false, NULL);
             sprintf(buf2, "You can barely lift the %s; %i more strength would be ideal.", buf1, strengthDeficiency);
             message(buf2, 0);
         }
 
-        if (theItem->category & ARMOR && theItem->strengthRequired > rogue.strength - player.weaknessAmount) {
-            strengthDeficiency = theItem->strengthRequired - max(0, rogue.strength - player.weaknessAmount);
+        if (theItem->category & ARMOR && theItem->strengthRequired > currentStrength()) {
+            strengthDeficiency = theItem->strengthRequired - max(0, currentStrength());
             strcpy(buf1, "");
             itemName(theItem, buf1, false, false, NULL);
             sprintf(buf2, "You stagger under the weight of the %s; %i more strength would be ideal.",
@@ -6312,7 +6320,7 @@ void throwCommand(item *theItem, boolean autoThrow) {
             (theItem->quantity > 1 ? "a" : "your"),
             theName);
     temporaryMessage(buf, REFRESH_SIDEBAR);
-    maxDistance = (12 + 2 * max(rogue.strength - player.weaknessAmount - 12, 2));
+    maxDistance = (12 + 2 * max(currentStrength() - 12, 2));
 
     pos zapTarget;
     if (autoThrow && canAutoTargetMonster(rogue.lastTarget, theItem, AUTOTARGET_MODE_THROW)) {
@@ -7732,8 +7740,8 @@ boolean equipItem(item *theItem, boolean force, item *unequipHint) {
             displayLevel();
             identifyItemKind(theItem);
         } else if (theItem->kind == RING_LIGHT
-                   || theItem->kind == RING_STEALTH) {
-            identifyItemKind(theItem);
+                   || theItem->kind == RING_STEALTH
+                   || theItem->kind == RING_STRENGTH) {
         }
         updateEncumbrance();
     }
@@ -7826,7 +7834,7 @@ void updateRingBonuses() {
     item *rings[2] = {rogue.ringLeft, rogue.ringRight};
 
     rogue.clairvoyance = rogue.stealthBonus = rogue.transference
-    = rogue.awarenessBonus = rogue.regenerationBonus = rogue.wisdomBonus = rogue.reaping = 0;
+    = rogue.awarenessBonus = rogue.regenerationBonus = rogue.wisdomBonus = rogue.reaping = rogue.strengthBonus = 0;
     rogue.lightMultiplier = 1;
 
     for (i=0; i<= 1; i++) {
@@ -7855,6 +7863,9 @@ void updateRingBonuses() {
                     break;
                 case RING_REAPING:
                     rogue.reaping += effectiveRingEnchant(rings[i]);
+                    break;
+                case RING_STRENGTH:
+                    rogue.strengthBonus += effectiveRingEnchant(rings[i]);
                     break;
             }
         }

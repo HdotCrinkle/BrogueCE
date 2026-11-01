@@ -416,7 +416,7 @@ void initializeRogue(uint64_t seed) {
     rogue.minersLight = lightCatalog[MINERS_LIGHT];
 
     rogue.clairvoyance = rogue.regenerationBonus
-    = rogue.stealthBonus = rogue.transference = rogue.wisdomBonus = rogue.reaping = 0;
+    = rogue.stealthBonus = rogue.transference = rogue.wisdomBonus = rogue.reaping = rogue.strengthBonus = 0;
     rogue.lightMultiplier = 1;
 
     theItem = generateItem(FOOD, RATION);

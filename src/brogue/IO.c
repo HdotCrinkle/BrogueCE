@@ -4677,13 +4677,13 @@ short printMonsterInfo(const creature *monst, short y, boolean dim, boolean high
 
                 sprintf(buf, "Str: %s%i%s  Armor: %i",
                         tempColorEscape,
-                        rogue.strength - player.weaknessAmount,
+                        currentStrength(),
                         grayColorEscape,
                         displayedArmorValue());
             } else {
                 sprintf(buf, "Str: %s%i%s  Armor: %i?",
                         tempColorEscape,
-                        rogue.strength - player.weaknessAmount,
+                        currentStrength(),
                         grayColorEscape,
                         estimatedArmorValue());
             }
