@@ -1130,7 +1130,7 @@ creatureType monsterCatalog[NUMBER_MONSTER_KINDS] = {
     {0, "mirrored totem",G_TOTEM, &beckonColor,80,   0,      0,      {0, 0, 0},      0,  100,    100,    DF_RUBBLE_BLOOD,0,    false,      100,    DF_MIRROR_TOTEM_STEP, {BOLT_BECKONING},
         (MONST_IMMUNE_TO_WEBS | MONST_NEVER_SLEEPS | MONST_IMMOBILE | MONST_INANIMATE | MONST_ALWAYS_HUNTING | MONST_WILL_NOT_USE_STAIRS | MONST_GETS_TURN_ON_ACTIVATION | MONST_ALWAYS_USE_ABILITY | MONST_IMMUNE_TO_WEAPONS | MONST_IMMUNE_TO_FIRE), (MA_REFLECT_100)},
 
-    // legendary allies
+    // legendary allies + troll totem
     {0, "unicorn",      G_UNICORN, &white,   40,     60,     175,    {2, 10, 2},     20, 50,     100,    DF_RED_BLOOD,   UNICORN_LIGHT,    true, 1,DF_UNICORN_POOP, {BOLT_HEALING, BOLT_SHIELDING},
         (MONST_MAINTAINS_DISTANCE | MONST_MALE | MONST_FEMALE), (0)},
     {0, "ifrit",        G_IFRIT,    &ifritColor,    40,     75,     175,    {5, 13, 2},     1,  50,     100,    DF_ASH_BLOOD,   IFRIT_LIGHT,    true, 0,  0,              {BOLT_DISCORD},
@@ -1141,6 +1141,8 @@ creatureType monsterCatalog[NUMBER_MONSTER_KINDS] = {
         (MONST_IMMUNE_TO_FIRE| MONST_IMMUNE_TO_WEBS | MONST_NEVER_SLEEPS | MONST_IMMOBILE | MONST_INANIMATE | MONST_WILL_NOT_USE_STAIRS | MONST_NO_POLYMORPH | MONST_ALWAYS_HUNTING | MONST_IMMUNE_TO_WEAPONS), (MA_CAST_SUMMON | MA_ENTER_SUMMONS)},
     {0, "mangrove dryad",G_ANCIENT_SPIRIT,   &tanColor,      70,     60,     175,    {2, 8, 2},      6,  100,    100,    DF_ASH_BLOOD,   0,    true,       0,      0,              {BOLT_ANCIENT_SPIRIT_VINES},
         (MONST_IMMUNE_TO_WEBS | MONST_ALWAYS_USE_ABILITY | MONST_MAINTAINS_DISTANCE | MONST_NO_POLYMORPH | MONST_MALE | MONST_FEMALE), (0)},
+    {0, "troll totem",  G_TOTEM,    &red,           120,     0,       0,    {0, 0, 0},      0,  100,    500,    DF_RUBBLE_BLOOD,PHOENIX_LIGHT,    false,0,   0,              {BOLT_INVISIBILITY, BOLT_BECKONING},
+        (MONST_IMMUNE_TO_WEBS | MONST_NEVER_SLEEPS | MONST_IMMOBILE | MONST_INANIMATE | MONST_WILL_NOT_USE_STAIRS), (0)},
 };
 
 const monsterWords monsterText[NUMBER_MONSTER_KINDS] = {
@@ -1365,6 +1367,9 @@ const monsterWords monsterText[NUMBER_MONSTER_KINDS] = {
     {"This mangrove dryad is as old as the earth, and $HISHER gnarled figure houses an ancient power. When angered, $HESHE can call upon the forces of nature to bind $HISHER foes and tear them to shreds.",
         "absorbing", "Absorbing",
         {"whips", "lashes", "thrashes", "lacerates", {0}}},
+    {"Trolls have daubed this evocative monument in blood. Its stony gaze preserved by demonic power, it hungers for flesh perpetually.",
+        "gazing at", "Gazing",
+        {"hits", {0}}},
 };
 
 const mutation mutationCatalog[NUMBER_MUTATORS] = {
@@ -1403,7 +1408,7 @@ const monsterClass monsterClassCatalog[MONSTER_CLASS_COUNT] = {
     {"waterborne",      10,         17,         {MK_EEL, MK_NAGA, MK_KRAKEN}},
     {"airborne",        10,         15,         {MK_VAMPIRE_BAT, MK_WILL_O_THE_WISP, MK_PIXIE, MK_PHANTOM, MK_FURY, MK_IFRIT, MK_PHOENIX}},
     {"fireborne",       10,         12,         {MK_WILL_O_THE_WISP, MK_SALAMANDER, MK_FLAMEDANCER, MK_PHOENIX}},
-    {"troll",           10,         15,         {MK_TROLL}},
+    {"troll",           10,         15,         {MK_TROLL, MK_TROLL_TOTEM}},
 };
 
 // ITEMS
