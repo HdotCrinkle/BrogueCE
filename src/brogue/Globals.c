@@ -1385,6 +1385,10 @@ const mutation mutationCatalog[NUMBER_MUTATORS] = {
         "A rare mutation causes $HIMHER to poison $HISHER victims and sap their strength with every attack.",   true},
     {"reflective",  &darkTurquoise, 100,            100,        100,            100,    100,    -1, 0,      0,      MONST_REFLECT_50, 0,         (MONST_REFLECT_50 | MONST_ALWAYS_USE_ABILITY), 0,
         "A rare mutation has coated $HISHER flesh with reflective scales.",     true},
+    {"winged",      &yellow,         100,            100,        100,            100,    100,    -1, 0,      0,      (MONST_FLIES | MONST_FLITS), 0,         (MONST_FLIES | MONST_FLITS), 0,
+        "A rare mutation has caused wings to sprout from $HISHER frame.",     true},
+    {"gelatinous",  &pinkJellyColor,100,            100,        100,            0,      100,    -1, 0,      0,      0,          MA_CLONE_SELF_ON_DEFEND, 0, MA_CLONE_SELF_ON_DEFEND,
+        "A rare mutation has rendered $HISHER flesh translucent and gelatinous; $HESHE will split in two when attacked.",     true},
 };
 
 const monsterClass monsterClassCatalog[MONSTER_CLASS_COUNT] = {

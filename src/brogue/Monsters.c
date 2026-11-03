@@ -48,6 +48,7 @@ void mutateMonster(creature *monst, short mutationIndex) {
     if (theMut->DFType > 0) {
         monst->info.DFType = theMut->DFType;
     }
+    initializeStatus(monst); 
 }
 
 // Allocates space, generates a creature of the given type,

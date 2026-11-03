@@ -1059,7 +1059,7 @@ enum monsterTypes {
     NUMBER_MONSTER_KINDS
 };
 
-#define NUMBER_MUTATORS             8
+#define NUMBER_MUTATORS             10
 
 #define MONSTER_CLASS_COUNT         15
 
