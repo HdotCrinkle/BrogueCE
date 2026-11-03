@@ -805,6 +805,7 @@ const hordeType hordeCatalog_BulletBrogue[] = {
     {MK_DAR_BLADEMASTER,3,      {MK_DAR_BLADEMASTER, MK_DAR_PRIESTESS, MK_DAR_BATTLEMAGE},{{1,2,1},{1,1,1},{1,1,1}},3,3,100},
     {MK_FURY,           1,      {MK_FURY},                              {{2, 4, 1}},                    3,     3,     80},
     {MK_REVENANT,       0,      {0},                                    {{0}},                          3,     4,     100},
+    {MK_TROLL_TOTEM,    1,      {MK_TROLL},                             {{2, 4, 1}},                    3,     3,     50,     0,          0,                  HORDE_NO_PERIODIC_SPAWN},
     {MK_GOLEM,          0,      {0},                                    {{0}},                          3,     4,     100},
     {MK_TENTACLE_HORROR,0,      {0},                                    {{0}},                          4,     DEEPEST_LEVEL,        100},
     {MK_PHYLACTERY,     0,      {0},                                    {{0}},                          4,     DEEPEST_LEVEL,        100},
