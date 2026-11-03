@@ -1012,6 +1012,7 @@ enum monsterTypes {
     MK_WRAITH,
     MK_ZOMBIE,
     MK_TROLL,
+    MK_TROLL_TOTEM,
     MK_OGRE_SHAMAN,
     MK_NAGA,
     MK_SALAMANDER,
@@ -1055,7 +1056,6 @@ enum monsterTypes {
     MK_PHOENIX,
     MK_PHOENIX_EGG,
     MK_ANCIENT_SPIRIT,
-    MK_TROLL_TOTEM,
 
     NUMBER_MONSTER_KINDS
 };
