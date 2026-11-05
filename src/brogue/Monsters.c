@@ -2728,6 +2728,11 @@ static boolean specificallyValidBoltTarget(creature *caster, creature *target, e
             // Monsters will never cast these.
             return false;
             break;
+        case BE_INVISIBILITY:
+            if (target->status[STATUS_INVISIBLE]) {
+                return false;
+            }
+            break;
         default:
             break;
     }
